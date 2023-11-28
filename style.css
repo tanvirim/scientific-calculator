@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&family=Rubik:wght@300&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 12px;
+  }
+}
+.calculator {
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 600px;
+}
+
+.calc-container {
+  background-color: #1d1d1d;
+  height: auto;
+
+  border-radius: 0 0 30px 30px;
+}
+
+.output {
+  width: 100%;
+}
+
+.operation {
+  height: 70px;
+
+  color: #878787;
+
+  font-size: 1.9em;
+  font-weight: bold;
+
+  position: relative;
+  overflow: hidden;
+}
+.operation .value {
+  position: absolute;
+
+  bottom: 5px;
+  right: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.result {
+  height: 140px;
+
+  color: #fff;
+
+  font-size: 2.6em;
+  font-weight: bold;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.result .value {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.input {
+  background-color: #fff;
+
+  border-radius: 0 0 25px 25px;
+  border: 1px solid #1d1d1d;
+  height: 340px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.row button {
+  width: 50px;
+  height: 50px;
+
+  font-size: 1.5em;
+
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+
+  margin: 8px;
+  padding: 4px;
+
+  cursor: pointer;
+}
+
+.row button:hover {
+  font-weight: bold;
+}
+
+.row #calculate {
+  color: #fff;
+  background-color: #46e0bc;
+
+  border-radius: 50%;
+}
+.row #delete {
+  color: #fff;
+  background-color: #e05046;
+}
+
+#division,
+#multiplication,
+#subtraction,
+#addition {
+  color: #18b893;
+}
+
+.input button span {
+  font-size: 0.6em;
+  position: absolute;
+}
+
+.active-angle {
+  background-color: #1d1d1d !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}
