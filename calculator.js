@@ -266,6 +266,19 @@ function calculatorButton() {
 
 calculatorButton();
 
+//RAD or DEG
+
+let RADIAN = false;
+const radButton = document.getElementById('rad');
+
+const degButton = document.getElementById('deg');
+degButton.classList.add('active-angle');
+
+function angelToggler() {
+  radButton.classList.toggle('active-angle');
+  degButton.classList.toggle('active-angle');
+}
+
 //onclick button
 
 inputElement.addEventListener('click', (event) => calculate(event));
@@ -277,12 +290,57 @@ function calculate(event) {
         data.operation.push(button.symbol);
         data.formula.push(button.formula);
       } else if (button.type == 'key') {
-        console.log(button.name);
+        if (button.name == 'delete') {
+          data.operation.pop();
+          data.formula.pop();
+        } else if (button.name == 'clear') {
+          data.operation = [];
+          data.formula = [];
+          updateOurputResult(0);
+        } else if (button.name == 'rad') {
+          RADIAN = true;
+          angelToggler();
+        } else if (button.name == 'deg') {
+          RADIAN = false;
+          angelToggler();
+        }
       } else if (button.type == 'calculate') {
-        const result = data.formula.join('');
-        updateOurputResult(eval(result));
+        const result = eval(data.formula.join(''));
+        updateOurputResult(result);
       } else if (button.type == 'operator') {
         data.operation.push(button.symbol);
+        data.formula.push(button.formula);
+      } else if (button.type == 'math_function') {
+        let symbol, formula;
+
+        if (button.name == 'factorial') {
+          symbol = '!';
+          formula = button.formula;
+          data.operation.push(symbol);
+          data.formula.push(formula);
+        } else if (button.name == 'power') {
+          symbol = '^(';
+          formula = button.formula;
+          data.operation.push(symbol);
+          data.formula.push(formula);
+        } else if (button.name == 'square') {
+          symbol = '^(';
+          formula = button.formula;
+
+          data.operation.push(symbol);
+          data.formula.push(formula);
+
+          data.operation.push('2');
+          data.formula.push('2');
+        } else {
+          symbol = button.symbol + '(';
+          formula = button.formula + '(';
+
+          data.operation.push(symbol);
+          data.formula.push(formula);
+        }
+      } else if ((button.type = 'trigo_function')) {
+        data.operation.push(button.symbol + '(');
         data.formula.push(button.formula);
       }
     }
@@ -299,6 +357,7 @@ function updateOutputOperation(operation) {
 
 function updateOurputResult(result) {
   resultElement.innerHTML = result;
+  console.log(data.formula.join(''));
 }
 
 // GAMMA FUNCTINON
@@ -322,4 +381,22 @@ function gamma(n) {
     var t = n + g + 0.5;
     return Math.sqrt(2 * Math.PI) * Math.pow(t, n + 0.5) * Math.exp(-t) * x;
   }
+}
+
+function trigo(callback, angel) {
+  if (!RADIAN) {
+    angel = (angel * Math.PI) / 180;
+  }
+
+  return callback(angel);
+}
+
+function inv_trigo(callback, value) {
+  let angel = callback(value);
+  const text = 'º';
+
+  if (!RADIAN) {
+    angel = (angel * 180) / Math.PI + text.sup();
+  }
+  return angel;
 }
